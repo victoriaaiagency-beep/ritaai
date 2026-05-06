@@ -1,5 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import TrustBanner from "@/components/TrustBanner";
+import Services from "@/components/Services";
 
 const Index = () => {
   return (
@@ -10,6 +12,8 @@ const Index = () => {
       <Navbar />
       <main className="relative">
         <Hero />
+        <TrustBanner />
+        <Services />
       </main>
     </div>
   );
