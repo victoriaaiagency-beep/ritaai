@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Workflow, Database, Zap } from "lucide-react";
 import avatar from "@/assets/rita-avatar.png";
 
@@ -8,7 +9,22 @@ const orbitIcons = [
   { Icon: Zap, angle: 240, delay: 0.8 },
 ];
 
+const rotatingPhrases = [
+  "Without the Operational Chaos.",
+  "So You Never Drop a Lead Again.",
+  "With Every Tool Connected in One Place.",
+  "While Giving You Real-Time Clarity.",
+];
+
 const Hero = () => {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setPhraseIndex((i) => (i + 1) % rotatingPhrases.length);
+    }, 3200);
+    return () => clearInterval(id);
+  }, []);
   return (
     <section className="relative pt-36 pb-20 px-4">
       <div className="mx-auto max-w-4xl text-center">
