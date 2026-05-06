@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Workflow, Database, Zap } from "lucide-react";
 import avatar from "@/assets/rita-avatar.png";
 
@@ -8,7 +9,22 @@ const orbitIcons = [
   { Icon: Zap, angle: 240, delay: 0.8 },
 ];
 
+const rotatingPhrases = [
+  "Without the Operational Chaos.",
+  "So You Never Drop a Lead Again.",
+  "With Every Tool Connected in One Place.",
+  "While Giving You Real-Time Clarity.",
+];
+
 const Hero = () => {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setPhraseIndex((i) => (i + 1) % rotatingPhrases.length);
+    }, 3200);
+    return () => clearInterval(id);
+  }, []);
   return (
     <section className="relative pt-36 pb-20 px-4">
       <div className="mx-auto max-w-4xl text-center">
@@ -28,7 +44,23 @@ const Hero = () => {
           className="mt-5 font-display font-extrabold text-text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]"
         >
           AI Automation Systems That Scale Your Business{" "}
-          <span className="text-primary">Without More Manual Work.</span>
+          <span className="relative inline-block align-top w-full sm:w-auto min-h-[1.15em] sm:min-h-[1.15em]">
+            <span className="invisible block" aria-hidden>
+              With Every Tool Connected in One Place.
+            </span>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={phraseIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="absolute inset-0 text-primary"
+              >
+                {rotatingPhrases[phraseIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </span>
         </motion.h1>
 
         <motion.p
