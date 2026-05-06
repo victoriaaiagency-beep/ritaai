@@ -2,6 +2,9 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustBanner from "@/components/TrustBanner";
 import Services from "@/components/Services";
+import Process from "@/components/Process";
+import CaseStudies from "@/components/CaseStudies";
+import Experience from "@/components/Experience";
 
 const Index = () => {
   return (
@@ -14,6 +17,9 @@ const Index = () => {
         <Hero />
         <TrustBanner />
         <Services />
+        <Process />
+        <CaseStudies />
+        <Experience />
       </main>
     </div>
   );
