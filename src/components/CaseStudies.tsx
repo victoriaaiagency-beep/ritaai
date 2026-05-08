@@ -13,6 +13,7 @@ const CaseStudies = () => {
           className="text-center font-display font-extrabold text-text-primary text-3xl sm:text-4xl md:text-5xl"
         >
           Real Results for Real Operators
+        </motion.h2>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
