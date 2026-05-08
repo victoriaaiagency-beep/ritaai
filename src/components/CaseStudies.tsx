@@ -12,8 +12,7 @@ const CaseStudies = () => {
           transition={{ duration: 0.5 }}
           className="text-center font-display font-extrabold text-text-primary text-3xl sm:text-4xl md:text-5xl"
         >
-          Real Business Results
-        </motion.h2>
+          Real Results for Real Operators
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
