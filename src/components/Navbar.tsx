@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Menu, X } from "lucide-react";
+import { openLeadModal } from "@/lib/constants";
 
 const links = [
   { href: "#services", label: "Services" },
   { href: "#process", label: "Process" },
-  { href: "#case-studies", label: "Case Studies" },
+  { href: "#recent-work", label: "Recent Work" },
+  { href: "#reviews", label: "Reviews" },
   { href: "#experience", label: "Experience" },
 ];
 
@@ -20,10 +22,10 @@ const Navbar = () => {
             <span className="grid place-items-center w-7 h-7 rounded-lg bg-primary/10">
               <Sparkles className="w-4 h-4 text-primary" />
             </span>
-            Rita.AI
+            Victoria
           </a>
 
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden md:flex items-center gap-7">
             {links.map((l) => (
               <li key={l.href}>
                 <a
@@ -37,14 +39,14 @@ const Navbar = () => {
           </ul>
 
           <div className="flex items-center gap-2">
-            <motion.a
-              href="#contact"
+            <motion.button
+              onClick={openLeadModal}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="hidden sm:inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow"
             >
               Book a Strategy Call
-            </motion.a>
+            </motion.button>
             <button
               onClick={() => setOpen((o) => !o)}
               className="md:hidden p-2 rounded-lg text-text-primary hover:bg-muted"
@@ -67,12 +69,15 @@ const Navbar = () => {
                 {l.label}
               </a>
             ))}
-            <a
-              href="#contact"
+            <button
+              onClick={() => {
+                setOpen(false);
+                openLeadModal();
+              }}
               className="inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             >
               Book a Strategy Call
-            </a>
+            </button>
           </div>
         )}
       </nav>

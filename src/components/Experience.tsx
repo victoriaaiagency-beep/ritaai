@@ -1,21 +1,22 @@
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { Mail } from "lucide-react";
+import { CONTACT_EMAIL } from "@/lib/constants";
 
 const items = [
   {
     title: "Operations Manager",
     subtitle: "Vycible Nigeria Limited & NUVYLUX GLOBAL SERVICES | 2025 - Present",
-    text: "Focus on operational efficiency and system management.",
+    text: "Leading operations and helping the team get more done with less back-and-forth.",
   },
   {
     title: "Workflow Coordinator",
     subtitle: "Az Cleaning Service | 2024 - 2025",
-    text: "Set up comprehensive AI workflows using Make.com and n8n.",
+    text: "Built end-to-end AI workflows in Make.com and n8n that took repetitive admin off the team's plate.",
   },
   {
     title: "Administrative Assistant",
     subtitle: "Aj Cleaning Inc | 2024 - 2025",
-    text: "Handled web research, lead generation, and email marketing implementation.",
+    text: "Handled web research, lead generation and email marketing so the founders could focus on customers.",
   },
   {
     title: "Education",
@@ -39,7 +40,6 @@ const Experience = () => {
         </motion.h2>
 
         <div className="mt-12 relative pl-8">
-          {/* vertical line */}
           <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
 
           <div className="space-y-10">
@@ -52,7 +52,6 @@ const Experience = () => {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="relative"
               >
-                {/* dot */}
                 <span className="absolute -left-8 top-2 grid place-items-center">
                   <span className="w-3.5 h-3.5 rounded-full bg-primary ring-4 ring-background" />
                 </span>
@@ -71,11 +70,15 @@ const Experience = () => {
           <motion.a
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            href="#"
+            href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+              "Free Audit Request",
+            )}&body=${encodeURIComponent(
+              "Hi Victoria,\n\nI'd love a free audit of my current systems. Here's a bit about my business and what's slowing us down:\n\n",
+            )}`}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25"
           >
-            <Download className="w-4 h-4" />
-            Download Full Resume
+            <Mail className="w-4 h-4" />
+            Get Free Audit
           </motion.a>
         </div>
       </div>

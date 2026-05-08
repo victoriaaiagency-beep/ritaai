@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Workflow, Mail, Database, ArrowRight } from "lucide-react";
+import { openLeadModal } from "@/lib/constants";
 
 const CaseStudies = () => {
   return (
@@ -12,7 +13,7 @@ const CaseStudies = () => {
           transition={{ duration: 0.5 }}
           className="text-center font-display font-extrabold text-text-primary text-3xl sm:text-4xl md:text-5xl"
         >
-          Real Business Results
+          Real Results for Real Operators
         </motion.h2>
 
         <motion.div
@@ -90,14 +91,14 @@ const CaseStudies = () => {
               </li>
             </ul>
 
-            <motion.a
+            <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              href="#contact"
+              onClick={openLeadModal}
               className="mt-8 inline-flex items-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-text-primary hover:border-primary/40 transition-colors"
             >
               Hire Me For A Similar Project
-            </motion.a>
+            </motion.button>
           </div>
         </motion.div>
       </div>

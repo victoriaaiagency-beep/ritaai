@@ -3,23 +3,23 @@ import { Magnet, Blocks, BarChart3, Cpu, type LucideIcon } from "lucide-react";
 
 const services: { title: string; text: string; Icon: LucideIcon }[] = [
   {
-    title: "Lead Generation & Follow-Up Automation",
-    text: "Capture, qualify, and nurture leads automatically without losing the human touch.",
+    title: "Lead Capture & Follow-Up",
+    text: "Catch every lead the moment it lands and follow up automatically — so nobody slips through the cracks.",
     Icon: Magnet,
   },
   {
-    title: "CRM & Workflow Integration",
-    text: "Connect Monday.com, Notion, Airtable, and your messaging systems into one seamless central hub.",
+    title: "CRM & Workflow Setup",
+    text: "Get Monday.com, Notion, Airtable and your messaging tools all working together in one place.",
     Icon: Blocks,
   },
   {
-    title: "Operations & Process Improvement",
-    text: "Simplify monthly reconciliations, automate reporting, and streamline client onboarding.",
+    title: "Operations Made Simple",
+    text: "Make monthly reports, reconciliations and client onboarding run themselves so your team can focus on real work.",
     Icon: BarChart3,
   },
   {
-    title: "Custom AI & Automation Infrastructure",
-    text: "Tailored Make.com and n8n architecture designed specifically for scalable growth.",
+    title: "Custom AI & Automation Builds",
+    text: "Tailored Make.com and n8n setups designed around how your business actually works.",
     Icon: Cpu,
   },
 ];
@@ -36,7 +36,7 @@ const Services = () => {
             transition={{ duration: 0.5 }}
             className="font-display font-extrabold text-text-primary text-3xl sm:text-4xl md:text-5xl"
           >
-            Solutions Built for Growth
+            Making Your Business Run Smoothly
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -45,7 +45,7 @@ const Services = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-lg text-text-secondary"
           >
-            I design automated systems that eliminate repetitive tasks and boost productivity.
+            Simple, reliable systems that take repetitive work off your plate and give your team their time back.
           </motion.p>
         </div>
 
