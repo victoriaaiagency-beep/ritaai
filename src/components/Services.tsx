@@ -36,7 +36,7 @@ const Services = () => {
             transition={{ duration: 0.5 }}
             className="font-display font-extrabold text-text-primary text-3xl sm:text-4xl md:text-5xl"
           >
-            Solutions Built for Growth
+            Making Your Business Run Smoothly
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -45,7 +45,7 @@ const Services = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-lg text-text-secondary"
           >
-            I design automated systems that eliminate repetitive tasks and boost productivity.
+            Simple, reliable systems that take repetitive work off your plate and give your team their time back.
           </motion.p>
         </div>
 

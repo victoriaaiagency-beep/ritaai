@@ -3,18 +3,18 @@ import { motion } from "framer-motion";
 const steps = [
   {
     n: 1,
-    title: "The Audit (Discover)",
-    text: "We map out your current bottlenecks, chaotic workflows, and manual time-wasters.",
+    title: "We Find the Bottlenecks",
+    text: "We sit down together and map out where your time is leaking — the chaotic handoffs, the manual work, the dropped leads.",
   },
   {
     n: 2,
-    title: "The Architecture (Build)",
-    text: "I design and implement a custom, bulletproof automation system using the best tools for your needs.",
+    title: "I Build the System",
+    text: "I design and build a clear, reliable system around how your business actually works — using the tools that fit you best.",
   },
   {
     n: 3,
-    title: "The Scale (Launch)",
-    text: "Your new system runs quietly in the background, recovering lost leads and saving your team hundreds of hours.",
+    title: "You Get Your Time Back",
+    text: "Your new setup runs quietly in the background, catching leads, moving work along, and giving you real-time clarity.",
   },
 ];
 

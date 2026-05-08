@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Workflow, Database, Zap } from "lucide-react";
 import avatar from "@/assets/rita-avatar.png";
+import { UPWORK_PROFILE_URL, openLeadModal } from "@/lib/constants";
 
 const orbitIcons = [
   { Icon: Workflow, angle: 0, delay: 0 },
@@ -10,10 +11,10 @@ const orbitIcons = [
 ];
 
 const rotatingPhrases = [
-  "Without the Operational Chaos.",
+  "So You Get Your Time Back.",
   "So You Never Drop a Lead Again.",
-  "With Every Tool Connected in One Place.",
-  "While Giving You Real-Time Clarity.",
+  "So Every Tool Talks to Each Other.",
+  "So Your Business Just Runs Smoothly.",
 ];
 
 const Hero = () => {
@@ -34,7 +35,7 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
           className="text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-primary"
         >
-          👋 Hi, I'm Rita Esomovie
+          👋 Hi, I'm Victoria
         </motion.p>
 
         <motion.h1
@@ -43,10 +44,10 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 font-display font-extrabold text-text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]"
         >
-          AI Automation Systems That Scale Your Business{" "}
+          Systems That Just Work —{" "}
           <span className="relative inline-block align-top w-full sm:w-auto min-h-[1.15em] sm:min-h-[1.15em]">
             <span className="invisible block" aria-hidden>
-              With Every Tool Connected in One Place.
+              So Every Tool Talks to Each Other.
             </span>
             <AnimatePresence mode="wait">
               <motion.span
@@ -69,9 +70,9 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary"
         >
-          I build smart workflows, lead systems, and AI-powered automations using
-          Make.com, n8n, Monday.com, and custom integrations — so your business runs
-          smoother, faster, and more profitably.
+          I'm Victoria — I help busy operators get their time back. I build the
+          workflows, lead systems and AI helpers that make your business run
+          smoothly, using the tools you already love.
         </motion.p>
 
         <motion.div
@@ -80,18 +81,20 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
         >
-          <motion.a
+          <motion.button
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            href="#contact"
+            onClick={openLeadModal}
             className="inline-flex items-center rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25"
           >
-            Book a Free Systems Audit
-          </motion.a>
+            Book a Strategy Call
+          </motion.button>
           <motion.a
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            href="#"
+            href={UPWORK_PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center rounded-full border border-border bg-white px-7 py-3.5 text-sm font-semibold text-text-primary hover:border-primary/40 transition-colors"
           >
             View My Upwork Profile
@@ -100,7 +103,6 @@ const Hero = () => {
 
         {/* Avatar with orbiting icons */}
         <div className="relative mx-auto mt-16 w-[320px] h-[320px] flex items-center justify-center">
-          {/* glow */}
           <div className="absolute inset-8 rounded-full bg-secondary blur-2xl opacity-60" />
 
           <motion.div
@@ -111,14 +113,13 @@ const Hero = () => {
           >
             <img
               src={avatar}
-              alt="Rita Esomovie, Workflow & Automation Specialist"
+              alt="Victoria, Business Systems Architect"
               width={500}
               height={500}
               className="w-full h-full object-cover"
             />
           </motion.div>
 
-          {/* Orbit container */}
           <motion.div
             className="absolute inset-0"
             animate={{ rotate: 360 }}

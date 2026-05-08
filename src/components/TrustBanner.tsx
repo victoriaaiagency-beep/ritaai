@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
 
-const industries = ["Realtors", "Startups", "Fintech", "Agencies", "Finance", "Gyms"];
+const industries = [
+  "Law Firms",
+  "Realtors",
+  "Construction",
+  "Roofing",
+  "Medspa",
+  "Fintech",
+  "Agencies",
+  "Gyms",
+  "Startups",
+];
 const stack = ["Make.com", "n8n", "Monday.com", "Notion AI", "Airtable", "Zapier", "Asana"];
 
 const TrustBanner = () => {
