@@ -1,48 +1,8 @@
-import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Briefcase } from "lucide-react";
-import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
-import { CONTACT_EMAIL, LINKEDIN_URL, UPWORK_PROFILE_URL } from "@/lib/constants";
-
-const emailSchema = z
-  .string()
-  .trim()
-  .email({ message: "Please enter a valid email address" })
-  .max(255, { message: "Email must be less than 255 characters" });
+import { Linkedin, Mail, Briefcase, MessageSquare } from "lucide-react";
+import { CONTACT_EMAIL, LINKEDIN_URL, UPWORK_PROFILE_URL, openChatbot, openLeadModal } from "@/lib/constants";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    const result = emailSchema.safeParse(email);
-    if (!result.success) {
-      toast({
-        title: "Invalid email",
-        description: result.error.issues[0].message,
-        variant: "destructive",
-      });
-      return;
-    }
-    setSubmitting(true);
-    const subject = encodeURIComponent("Free Audit Checklist Request");
-    const body = encodeURIComponent(
-      `Hi Victoria,\n\nPlease send me the free audit checklist.\n\nMy email: ${email}\n`,
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setTimeout(() => {
-      setSubmitting(false);
-      setEmail("");
-      toast({
-        title: "You're on the list",
-        description: "Your free audit checklist is on its way.",
-      });
-    }, 600);
-  };
-
   return (
     <footer id="contact" className="relative bg-[#0F172A] text-white">
       <div className="mx-auto max-w-5xl px-4 py-24 text-center">
@@ -65,34 +25,27 @@ const Footer = () => {
           Let's make your business run smoothly so you can focus on real growth.
         </motion.p>
 
-        <motion.form
+        <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          onSubmit={handleSubmit}
-          className="mt-8 mx-auto flex flex-col sm:flex-row items-stretch gap-3 max-w-xl"
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
         >
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            maxLength={255}
-            placeholder="you@company.com"
-            aria-label="Email address"
-            className="flex-1 rounded-full bg-white text-text-primary placeholder:text-slate-400 px-5 py-3.5 text-sm outline-none ring-1 ring-transparent focus:ring-primary"
-          />
-          <motion.button
-            type="submit"
-            disabled={submitting}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 disabled:opacity-70"
+          <button
+            onClick={openChatbot}
+            className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30"
           >
-            {submitting ? "Sending..." : "Get Free Audit Checklist"}
-          </motion.button>
-        </motion.form>
+            <MessageSquare className="w-4 h-4" />
+            Get Free Audit
+          </button>
+          <button
+            onClick={openLeadModal}
+            className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+          >
+            Book Strategy Call
+          </button>
+        </motion.div>
       </div>
 
       <div className="border-t border-[#334155]">

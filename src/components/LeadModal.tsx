@@ -1,26 +1,27 @@
 import { useEffect, useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar, CheckCircle2, Sparkles } from "lucide-react";
+import { X, Calendar, CheckCircle2, Sparkles, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { CONTACT_EMAIL, CALENDAR_URL } from "@/lib/constants";
+import { CALENDAR_URL } from "@/lib/constants";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
   email: z.string().trim().email("Please enter a valid email").max(255),
   phone: z.string().trim().min(5, "Please enter a phone number").max(40),
-  bottleneck: z
+  details: z
     .string()
     .trim()
-    .min(5, "Tell us a little more")
-    .max(1000, "Keep it under 1000 characters"),
+    .min(10, "Please share a few sentences about your project")
+    .max(2000, "Keep it under 2000 characters"),
 });
 
 const LeadModal = () => {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<"form" | "thanks">("form");
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", bottleneck: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", details: "" });
   const { toast } = useToast();
 
   useEffect(() => {
@@ -33,8 +34,7 @@ const LeadModal = () => {
   }, []);
 
   useEffect(() => {
-    if (open) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -43,12 +43,12 @@ const LeadModal = () => {
   const close = () => {
     setOpen(false);
     setTimeout(() => {
-      setForm({ name: "", email: "", phone: "", bottleneck: "" });
+      setForm({ name: "", email: "", phone: "", details: "" });
       setStep("form");
     }, 300);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const result = schema.safeParse(form);
     if (!result.success) {
@@ -60,16 +60,23 @@ const LeadModal = () => {
       return;
     }
     setSubmitting(true);
-    // Send via mailto (no backend). The browser opens the user's email client.
-    const subject = encodeURIComponent(`New strategy call request — ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\nMain business bottleneck:\n${form.bottleneck}`,
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const { error } = await supabase.functions.invoke("process-lead", {
+        body: result.data,
+      });
+      if (error) throw error;
       setStep("thanks");
-    }, 400);
+    } catch (err: any) {
+      console.error("process-lead failed", err);
+      toast({
+        title: "Something went wrong",
+        description:
+          "We couldn't submit right now. Please try again, or email victoria.ai.agency@gmail.com.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -96,7 +103,6 @@ const LeadModal = () => {
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="relative w-full max-w-lg rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden"
           >
-            {/* Brand header */}
             <div className="bg-[#0F172A] px-6 py-5 flex items-center gap-3">
               <span className="grid place-items-center w-9 h-9 rounded-xl bg-primary/20">
                 <Sparkles className="w-4 h-4 text-secondary" />
@@ -176,17 +182,17 @@ const LeadModal = () => {
                     </div>
                     <div>
                       <label className="text-xs font-semibold text-text-primary">
-                        What is your main business bottleneck?
+                        Project details
                       </label>
                       <textarea
                         required
-                        maxLength={1000}
-                        value={form.bottleneck}
+                        maxLength={2000}
+                        value={form.details}
                         onChange={(e) =>
-                          setForm({ ...form, bottleneck: e.target.value })
+                          setForm({ ...form, details: e.target.value })
                         }
-                        rows={4}
-                        placeholder="e.g. Leads slipping through the cracks between our forms and CRM."
+                        rows={5}
+                        placeholder="What are you trying to automate or fix? Which tools do you use today?"
                         className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-text-primary outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 resize-none"
                       />
                     </div>
@@ -194,9 +200,10 @@ const LeadModal = () => {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="w-full rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 disabled:opacity-70"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 disabled:opacity-70"
                     >
-                      {submitting ? "Sending..." : "Submit"}
+                      {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
+                      {submitting ? "Sending to Victoria..." : "Submit"}
                     </button>
                   </form>
                 </>
@@ -209,9 +216,8 @@ const LeadModal = () => {
                     Thank you!
                   </h2>
                   <p className="mt-3 text-text-secondary">
-                    Your details are secured. Victoria is reviewing your request now.
-                    Use the button below to pick a time on the calendar that works for
-                    you.
+                    Victoria is reviewing your request right now and will reach out
+                    shortly. To move faster, pick a time on her calendar below.
                   </p>
                   <a
                     href={CALENDAR_URL}

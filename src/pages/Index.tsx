@@ -5,9 +5,10 @@ import Services from "@/components/Services";
 import Process from "@/components/Process";
 import RecentWork from "@/components/RecentWork";
 import Reviews from "@/components/Reviews";
-import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 import LeadModal from "@/components/LeadModal";
+import ChatbotModal from "@/components/ChatbotModal";
+import ChatLauncher from "@/components/ChatLauncher";
 
 const Index = () => {
   return (
@@ -22,10 +23,11 @@ const Index = () => {
         <Process />
         <RecentWork />
         <Reviews />
-        <Experience />
       </main>
       <Footer />
       <LeadModal />
+      <ChatbotModal />
+      <ChatLauncher />
     </div>
   );
 };
