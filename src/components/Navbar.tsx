@@ -8,7 +8,6 @@ const links = [
   { href: "#process", label: "Process" },
   { href: "#recent-work", label: "Recent Work" },
   { href: "#reviews", label: "Reviews" },
-  { href: "#experience", label: "Experience" },
 ];
 
 const Navbar = () => {
