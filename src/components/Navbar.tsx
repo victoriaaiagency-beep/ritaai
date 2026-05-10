@@ -14,7 +14,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-4 inset-x-0 z-50 px-4">
+    <header className="relative z-50 px-4 pt-4">
       <nav className="mx-auto max-w-6xl rounded-2xl border border-border/60 bg-white/80 backdrop-blur-md shadow-[0_8px_30px_rgb(15,23,42,0.06)]">
         <div className="flex items-center justify-between px-5 py-3">
           <a href="#" className="flex items-center gap-2 font-display font-bold text-text-primary text-lg">
