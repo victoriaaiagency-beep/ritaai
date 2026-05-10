@@ -20,7 +20,7 @@ const steps = [
 
 const Process = () => {
   return (
-    <section id="process" className="relative py-24 px-4">
+    <section id="process" className="relative py-14 md:py-24 px-4">
       <div className="mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -32,7 +32,7 @@ const Process = () => {
           A System Engineered for Results
         </motion.h2>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative">
+        <div className="mt-8 md:mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative">
           {steps.map(({ n, title, text }, i) => (
             <motion.div
               key={n}

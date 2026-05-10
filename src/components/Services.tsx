@@ -26,7 +26,7 @@ const services: { title: string; text: string; Icon: LucideIcon }[] = [
 
 const Services = () => {
   return (
-    <section id="services" className="relative py-24 px-4">
+    <section id="services" className="relative py-14 md:py-24 px-4">
       <div className="mx-auto max-w-6xl">
         <div className="text-center max-w-2xl mx-auto">
           <motion.h2
@@ -49,7 +49,7 @@ const Services = () => {
           </motion.p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-8 md:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map(({ title, text, Icon }, i) => (
             <motion.div
               key={title}

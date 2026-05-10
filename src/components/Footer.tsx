@@ -5,7 +5,7 @@ import { CONTACT_EMAIL, LINKEDIN_URL, UPWORK_PROFILE_URL, openChatbot, openLeadM
 const Footer = () => {
   return (
     <footer id="contact" className="relative bg-[#0F172A] text-white">
-      <div className="mx-auto max-w-5xl px-4 py-24 text-center">
+      <div className="mx-auto max-w-5xl px-4 py-14 md:py-24 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}

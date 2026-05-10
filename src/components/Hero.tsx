@@ -27,7 +27,7 @@ const Hero = () => {
     return () => clearInterval(id);
   }, []);
   return (
-    <section className="relative pt-36 pb-20 px-4">
+    <section className="relative pt-24 md:pt-36 pb-10 md:pb-20 px-4">
       <div className="mx-auto max-w-4xl text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}

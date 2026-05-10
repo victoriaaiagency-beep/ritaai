@@ -15,7 +15,7 @@ const reviews = [
 
 const Reviews = () => {
   return (
-    <section id="reviews" className="relative py-24 px-4">
+    <section id="reviews" className="relative py-14 md:py-24 px-4">
       <div className="mx-auto max-w-6xl">
         <div className="text-center max-w-2xl mx-auto">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
